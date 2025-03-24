@@ -1,0 +1,10 @@
+﻿@model IQueryable<Url>
+
+<h1>Список URL</h1>
+
+<ul>
+    @foreach (var url in Model)
+    {
+        <li>@url</li>
+    }
+</ul>
