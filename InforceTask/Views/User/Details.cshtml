@@ -1,0 +1,24 @@
+﻿@model Url
+
+<h1>Details of URL</h1>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Original URL</th>
+        <td>@Model.OriginalUrl</td>
+    </tr>
+    <tr>
+        <th>Short URL</th>
+        <td>@Model.ShortUrl</td>
+    </tr>
+    <tr>
+        <th>Created By</th>
+        <td>@Model.CreatedBy</td>
+    </tr>
+    <tr>
+        <th>Created Date</th>
+        <td>@Model.CreatedDate</td>
+    </tr>
+</table>
+
+<a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to List</a>

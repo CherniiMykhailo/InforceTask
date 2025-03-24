@@ -2,9 +2,42 @@
 
 <h1>Список URL</h1>
 
-<ul>
-    @foreach (var url in Model)
-    {
-        <li>@url</li>
-    }
-</ul>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Original URL</th>
+            <th>Short URL</th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th>Actions</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var url in Model)
+        {
+            <tr>
+                <td>@url.OriginalUrl</td>
+                <td>@url.ShortUrl</td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a href="@Url.Action("Details", "User", new { id = url.Id })" class="btn btn-info">Details</a>
+                        <form action="@Url.Action("Delete", "User", new { id = url.Id })" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="mb-3">
+        <form action="@Url.Action("Create", "User")" method="post">
+            <button type="submit" class="btn btn-primary mt-2">Add URL</button>
+        </form>
+    </div>
+}
