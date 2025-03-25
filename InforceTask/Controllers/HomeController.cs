@@ -32,9 +32,16 @@ namespace InforceTask.Controllers
             return View(repository.Urls);
         }
 
-        public IActionResult About()
+        [HttpGet("{shortUrl}")]
+        public IActionResult RedirectToOriginal(string shortUrl)
         {
-            return View();
+            var url = repository.Urls.FirstOrDefault(u => u.ShortUrl == shortUrl);
+            if (url == null)
+            {
+                return NotFound("Short URL not found.");
+            }
+
+            return Redirect(url.OriginalUrl);
         }
     }
 }

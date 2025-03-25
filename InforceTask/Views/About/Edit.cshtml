@@ -1,0 +1,33 @@
+﻿@model About
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Description</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="bg-primary text-white p-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand m-lg-1">Edit Description</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Description</h1>
+        <form asp-action="Edit" asp-controller="About" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-3">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/About/Index" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+</body>
+</html>

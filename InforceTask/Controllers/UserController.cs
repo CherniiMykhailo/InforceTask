@@ -49,7 +49,7 @@ namespace InforceTask.Controllers
             var newUrl = new Url
             {
                 OriginalUrl = originalUrl,
-                ShortUrl = uniqueShortUrl,
+                ShortUrl = GenerateShortUrl(),
                 CreatedBy = currentUser,
                 CreatedDate = DateTime.UtcNow
             };
@@ -83,6 +83,11 @@ namespace InforceTask.Controllers
             repository.DeleteUrl(url);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        private string GenerateShortUrl()
+        {
+            return Guid.NewGuid().ToString().Substring(0, 6);
         }
     }
 }

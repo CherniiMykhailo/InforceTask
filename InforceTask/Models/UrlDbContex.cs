@@ -9,5 +9,6 @@ namespace InforceTask.Models
             : base(options) { }
 
         public DbSet<Url> Urls { get; set; }
+        public DbSet<About> Abouts { get; set; }
     }
 }

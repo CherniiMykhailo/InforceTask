@@ -9,5 +9,7 @@ namespace InforceTask.Models.Repository
         void CreateUrl(Url url);
         void DeleteUrl(Url url);
         DbContext GetDbContext();
+
+        UrlDbContex GetallDbContext();
     }
 }

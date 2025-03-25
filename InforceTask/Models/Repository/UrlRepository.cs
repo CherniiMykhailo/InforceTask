@@ -17,6 +17,11 @@ namespace InforceTask.Models.Repository
             return contex;
         }
 
+        public UrlDbContex GetallDbContext()
+        {
+            return contex;
+        }
+
         public IQueryable<Url> Urls => this.contex.Urls;
 
         public void CreateUrl(Url url)

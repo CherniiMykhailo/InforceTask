@@ -1,0 +1,21 @@
+﻿@model About
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Description of Url Shortener algorithm</h1>
+
+        <div class="mb-3">
+            <p>@Model.Description</p>
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="mt-3">
+                <a href="@Url.Action("Edit", "About", new { id = Model.Id })" class="btn btn-warning">Edit</a>
+            </div>
+        }
+    </div>
+</body>
+</html>
