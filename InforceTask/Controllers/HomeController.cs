@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace InforceTask.Controllers
 {
+    [Route("Home")]
     public class HomeController : Controller
     {
         private readonly IUrlRepository repository;
@@ -17,6 +18,7 @@ namespace InforceTask.Controllers
             this.signInManager = signInManager;
         }
 
+        [Route("Index")]
         public IActionResult Index()
         {
             if (signInManager.IsSignedIn(User))

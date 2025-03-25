@@ -39,6 +39,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapGet("/", () => Results.Redirect("/Home/Index"));
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
