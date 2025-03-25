@@ -12,11 +12,6 @@ namespace InforceTask.Models.Repository
             contex = ctx;
         }
 
-        public DbContext GetDbContext()
-        {
-            return contex;
-        }
-
         public UrlDbContex GetallDbContext()
         {
             return contex;

@@ -8,8 +8,6 @@ namespace InforceTask.Models.Repository
         void SaveUrl(Url url);
         void CreateUrl(Url url);
         void DeleteUrl(Url url);
-        DbContext GetDbContext();
-
         UrlDbContex GetallDbContext();
     }
 }

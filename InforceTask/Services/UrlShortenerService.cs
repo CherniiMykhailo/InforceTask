@@ -2,21 +2,21 @@
 using System.Linq;
 using System.Threading.Tasks;
 using InforceTask.Models;
+using InforceTask.Models.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace InforceTask.Services
 {
-
     public class UrlShortenerService
     {
-        private readonly DbContext _dbContext;
+        private readonly IUrlRepository _repository;
         private readonly Random _random = new Random();
         private const int NumberOfCharsInShortLink = 8;
         private const string Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-        public UrlShortenerService(DbContext dbContext)
+        public UrlShortenerService(IUrlRepository repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
         public async Task<string> GenerateUniqueCode()
@@ -33,7 +33,7 @@ namespace InforceTask.Services
 
                 string code = new string(codeChars);
 
-                if (!await _dbContext.Set<Url>().AnyAsync(x => x.ShortUrl == code))
+                if (!await _repository.GetallDbContext().Set<Url>().AnyAsync(x => x.ShortUrl == code))
                 {
                     return code;
                 }

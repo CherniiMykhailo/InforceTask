@@ -9,7 +9,7 @@ namespace InforceTask.Controllers
     public class HomeController : Controller
     {
         private readonly IUrlRepository repository;
-        private SignInManager<IdentityUser> signInManager;
+        private readonly SignInManager<IdentityUser> signInManager;
 
         public HomeController(IUrlRepository repository, SignInManager<IdentityUser> signInManager)
         {

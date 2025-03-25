@@ -23,7 +23,6 @@ namespace InforceTask.Controllers
             return View();
         }
 
-
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> Create(string originalUrl)
@@ -43,13 +42,13 @@ namespace InforceTask.Controllers
 
             var currentUser = User.Identity?.Name ?? "Unknown User";
 
-            var shortenerService = new UrlShortenerService(repository.GetDbContext());
+            var shortenerService = new UrlShortenerService(repository);
             string uniqueShortUrl = await shortenerService.GenerateUniqueCode();
 
             var newUrl = new Url
             {
                 OriginalUrl = originalUrl,
-                ShortUrl = GenerateShortUrl(),
+                ShortUrl = uniqueShortUrl,
                 CreatedBy = currentUser,
                 CreatedDate = DateTime.UtcNow
             };
@@ -85,7 +84,7 @@ namespace InforceTask.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private string GenerateShortUrl()
+        private static string GenerateShortUrl()
         {
             return Guid.NewGuid().ToString().Substring(0, 6);
         }
