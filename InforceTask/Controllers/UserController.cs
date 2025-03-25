@@ -1,5 +1,6 @@
 ﻿using InforceTask.Models;
 using InforceTask.Models.Repository;
+using InforceTask.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace InforceTask.Controllers
 
         [HttpPost]
         [Route("Create")]
-        public IActionResult Create(string originalUrl)
+        public async Task<IActionResult> Create(string originalUrl)
         {
             if (string.IsNullOrWhiteSpace(originalUrl))
             {
@@ -42,10 +43,13 @@ namespace InforceTask.Controllers
 
             var currentUser = User.Identity?.Name ?? "Unknown User";
 
+            var shortenerService = new UrlShortenerService(repository.GetDbContext());
+            string uniqueShortUrl = await shortenerService.GenerateUniqueCode();
+
             var newUrl = new Url
             {
                 OriginalUrl = originalUrl,
-                ShortUrl = GenerateShortUrl(),
+                ShortUrl = uniqueShortUrl,
                 CreatedBy = currentUser,
                 CreatedDate = DateTime.UtcNow
             };
@@ -79,11 +83,6 @@ namespace InforceTask.Controllers
             repository.DeleteUrl(url);
 
             return RedirectToAction("Index", "Home");
-        }
-
-        private static string GenerateShortUrl()
-        {
-            return Guid.NewGuid().ToString().Substring(0, 8);
         }
     }
 }

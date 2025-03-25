@@ -1,4 +1,6 @@
-﻿namespace InforceTask.Models.Repository
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace InforceTask.Models.Repository
 {
     public interface IUrlRepository
     {
@@ -6,5 +8,6 @@
         void SaveUrl(Url url);
         void CreateUrl(Url url);
         void DeleteUrl(Url url);
+        DbContext GetDbContext();
     }
 }

@@ -1,14 +1,22 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace InforceTask.Models.Repository
 {
     public class UrlRepository : IUrlRepository
     {
-        private UrlDbContex contex;
+        private readonly UrlDbContex contex;
 
         public UrlRepository(UrlDbContex ctx)
         {
             contex = ctx;
         }
+
+        public DbContext GetDbContext()
+        {
+            return contex;
+        }
+
         public IQueryable<Url> Urls => this.contex.Urls;
 
         public void CreateUrl(Url url)
